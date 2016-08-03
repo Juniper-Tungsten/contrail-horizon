@@ -19,6 +19,7 @@ from django.core.urlresolvers import reverse  # noqa
 from django import template
 from django.template import defaultfilters as filters
 from django.utils.translation import ugettext_lazy as _  # noqa
+from django.utils.translation import pgettext_lazy
 
 from horizon import exceptions
 from horizon import tables
@@ -27,6 +28,17 @@ from openstack_dashboard import api
 
 
 LOG = logging.getLogger(__name__)
+
+DISPLAY_CHOICES = (
+    ("UP", pgettext_lazy("Admin state of a Network", u"UP")),
+    ("DOWN", pgettext_lazy("Admin state of a Network", u"DOWN")),
+)
+STATUS_DISPLAY_CHOICES = (
+    ("ACTIVE", pgettext_lazy("Current status of a Network", u"Active")),
+    ("BUILD", pgettext_lazy("Current status of a Network", u"Build")),
+    ("DOWN", pgettext_lazy("Current status of a Network", u"Down")),
+    ("ERROR", pgettext_lazy("Current status of a Network", u"Error")),
+)
 
 class NetFilterAction(tables.FilterAction):
     def filter(self, table, networks, filter_string):

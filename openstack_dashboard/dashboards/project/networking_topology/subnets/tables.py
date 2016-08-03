@@ -1,8 +1,4 @@
-# Copyright 2012 United States Government as represented by the
-# Administrator of the National Aeronautics and Space Administration.
-# All Rights Reserved.
-#
-# Copyright 2013 NTT MCL, Inc.
+# Copyright 2015 Cisco Systems.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
 #    not use this file except in compliance with the License. You may obtain
@@ -16,14 +12,19 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+
 from django.utils.translation import ugettext_lazy as _
 
-import horizon
+from contrail_openstack_dashboard.openstack_dashboard.dashboards.project.networking.subnets import tables
 
-from openstack_dashboard.dashboards.project import dashboard
 
-class NetworkingTopology(horizon.Panel):
-    name = _("Network Topology")
-    slug = 'networking_topology'
+class DeleteSubnet(tables.DeleteSubnet):
+    failure_url = 'horizon:project:networking_topology:network'
 
-dashboard.Project.register(NetworkingTopology)
+
+class SubnetsTable(tables.SubnetsTable):
+    class Meta(object):
+        name = "subnets"
+        verbose_name = _("Subnets")
+        row_actions = (DeleteSubnet, )
+        table_actions = (DeleteSubnet, )

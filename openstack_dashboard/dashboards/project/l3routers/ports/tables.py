@@ -15,6 +15,7 @@
 import logging
 
 from django.core.urlresolvers import reverse
+from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
 
@@ -88,6 +89,16 @@ class RemoveInterface(policy.PolicyTargetMixin, tables.DeleteAction):
                                args=[router_id])
             exceptions.handle(request, msg, redirect=redirect)
 
+DISPLAY_CHOICES = (
+    ("UP", pgettext_lazy("Admin state of a Port", u"UP")),
+    ("DOWN", pgettext_lazy("Admin state of a Port", u"DOWN")),
+)
+STATUS_DISPLAY_CHOICES = (
+    ("ACTIVE", pgettext_lazy("current status of port", u"Active")),
+    ("BUILD", pgettext_lazy("current status of port", u"Build")),
+    ("DOWN", pgettext_lazy("current status of port", u"Down")),
+    ("ERROR", pgettext_lazy("current status of port", u"Error")),
+)
 
 class PortsTable(tables.DataTable):
     name = tables.Column("name",

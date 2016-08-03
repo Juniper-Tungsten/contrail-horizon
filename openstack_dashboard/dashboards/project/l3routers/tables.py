@@ -16,6 +16,7 @@ import logging
 
 from django.core.urlresolvers import reverse
 from django.template import defaultfilters as filters
+from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
 from neutronclient.common import exceptions as q_ext
@@ -159,6 +160,14 @@ def get_external_network(router):
     else:
         return "-"
 
+STATUS_DISPLAY_CHOICES = (
+    ("active", pgettext_lazy("current status of router", u"Active")),
+    ("error", pgettext_lazy("current status of router", u"Error")),
+)
+ADMIN_STATE_DISPLAY_CHOICES = (
+    ("UP", pgettext_lazy("Admin state of a Router", u"UP")),
+    ("DOWN", pgettext_lazy("Admin state of a Router", u"DOWN")),
+)
 
 class RoutersTable(tables.DataTable):
     name = tables.Column("name",
