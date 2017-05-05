@@ -380,7 +380,7 @@ class CreateNetwork(workflows.Workflow):
                                policy_str[1],
                                policy_str[2]]
                 policy_list.append(pol_fq_name)
-            params['contrail:policys'] = policy_list
+            params['policys'] = policy_list
             network = api.neutron.network_create(request, **params)
             network.set_id_as_name_if_empty()
             self.context['net_id'] = network.id
@@ -436,7 +436,7 @@ class CreateNetwork(workflows.Workflow):
                           'name': data['subnet_name'],
                           'cidr': data['cidr'],
                           'ip_version': int(data['ip_version']),
-                          'contrail:ipam_fq_name': ipam_obj.fq_name}
+                          'ipam_fq_name': ipam_obj.fq_name}
             except Exception as e:
                 msg = _('Failed to read ipam "%(sub)s" for network "%(net)s": '
                         ' %(reason)s')
@@ -577,7 +577,7 @@ class ModifyNetworkPolicyAction(workflows.MembershipAction):
                            policy_str[1],
                            policy_str[2]]
             policy_list.append(pol_fq_name)
-        params = {'contrail:policys': policy_list}
+        params = {'policys': policy_list}
         net_id = data['network_id']
         try:
             network_update(request,
