@@ -554,7 +554,7 @@ class ModifyNetworkPolicyAction(workflows.MembershipAction):
         if network_id:
             net_obj = network_get(request, network_id)
             try:
-                network_policys = net_obj.contrail__policys
+                network_policys = net_obj.policys
             except:
                 pass
         if network_policys:
