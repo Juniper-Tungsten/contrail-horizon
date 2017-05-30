@@ -145,12 +145,12 @@ class AddRuleView(forms.ModalFormView):
                     ('local', 'LOCAL (All Networks to which this policy is associated)')]
         for network in nets:
                 networks.append(("{0}:{1}:{2}".format(
-                                 network.contrail__fq_name[0],
-                                 network.contrail__fq_name[1],
-                                 network.contrail__fq_name[2]),
+                                 network.fq_name[0],
+                                 network.fq_name[1],
+                                 network.fq_name[2]),
                                  "{0} ({1})".format(
-                                 network.contrail__fq_name[2], 
-                                 network.contrail__fq_name[1])))
+                                 network.fq_name[2], 
+                                 network.fq_name[1])))
         kwargs['network_list'] = networks
 
         services = [('default-domain:admin:test', 'test'), ('default-domain:demo:svc-2', 'svc-2')]
