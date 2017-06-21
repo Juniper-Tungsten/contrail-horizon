@@ -106,9 +106,9 @@ def get_subnets(network):
     return template.loader.render_to_string(template_name, context)
 
 def get_policies(network):
-    if hasattr(network, 'policys'):
+    if hasattr(network, 'contrail__policys'):
         template_name = 'project/networking/_network_policies.html'
-        context = {"policies": network.policys}
+        context = {"policies": network.contrail__policys}
         return template.loader.render_to_string(template_name, context)
     else:
         return '-'
