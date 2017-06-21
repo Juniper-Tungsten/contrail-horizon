@@ -13,4 +13,4 @@
 host=review.opencontrail.org
 port=29418
 project=Juniper/contrail-horizon.git
-defaultbranch=master
+defaultbranch=contrail/Mitaka-9.0.0-4.0
