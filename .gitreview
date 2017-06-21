@@ -13,4 +13,4 @@
 host=review.opencontrail.org
 port=29418
 project=Juniper/contrail-horizon.git
-defaultbranch=contrail/Liberty-8.0.0
+defaultbranch=contrail/Liberty-8.0.0-4.0
