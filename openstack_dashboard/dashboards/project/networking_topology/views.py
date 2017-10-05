@@ -29,6 +29,7 @@ from django.views.generic import View  # noqa
 from horizon import exceptions
 from horizon.utils.lazy_encoder import LazyTranslationEncoder
 from horizon import views
+from horizon.utils import settings as utils_settings
 
 from openstack_dashboard import api
 from openstack_dashboard.usage import quotas
@@ -183,7 +184,7 @@ class NetworkTopologyView(views.HorizonTemplateView):
 
     def _has_permission(self, policy):
         has_permission = True
-        policy_check = getattr(settings, "POLICY_CHECK_FUNCTION", None)
+        policy_check = utils_settings.import_setting("POLICY_CHECK_FUNCTION")
 
         if policy_check:
             has_permission = policy_check(policy, self.request)
